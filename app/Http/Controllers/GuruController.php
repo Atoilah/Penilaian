@@ -23,7 +23,7 @@ class GuruController extends Controller
 
         $Validasi = $request->validate([
             'NIP' => 'required|max:12|min:12',
-            'Nama' => 'required|max:30',
+            'GuruNama' => 'required|max:30',
             'MapelId' => 'required|max:1',
             'JenKel' => 'required|max:1',
             'Status' => 'required|max:1',
@@ -36,19 +36,20 @@ class GuruController extends Controller
         // return redirect('/guru');
     }
 
-    public function update(Request $request, Guru $guru)
+    public function update($NIP, Request $request, Guru $guru)
     {
         $Validasi = $request->validate([
             'NIP' => 'required|max:12|min:12',
-            'Nama' => 'required|max:30',
+            'GuruNama' => 'required|max:30',
             'MapelId' => 'required|max:1',
             'JenKel' => 'required|max:1',
             'Status' => 'required|max:1',
         ]);
-        // $guru = Guru::find($NIP);
-        // $guru->update($request->except(['_token', 'sumbit']));
-        Guru::where('NIP', $guru->NIP)->update($Validasi);
-        return redirect('/guru');
+
+        $guru = Guru::find($NIP);
+        $guru->update($request->except(['_token', 'sumbit']));
+        // Guru::where('NIP', $guru->NIP)->update($Validasi);
+        // return redirect('/guru');
     }
 
     public function hapus($NIP, Request $request)

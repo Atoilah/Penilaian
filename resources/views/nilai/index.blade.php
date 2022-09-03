@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
-    <title>Jurusan</title>
+    <title>Mata Pelajaran</title>
     {{-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script> --}}
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
@@ -52,10 +52,25 @@
                         Id
                     </th>
                     <th class="py-3 px-6" scope="col">
-                        Kode
+                        Nama Siswa
                     </th>
                     <th class="py-3 px-6" scope="col">
-                        Jurusan
+                        Mata Pelajaran
+                    </th>
+                    <th class="py-3 px-6" scope="col">
+                        Nama Guru
+                    </th>
+                    <th class="py-3 px-6" scope="col">
+                        NilaiUh
+                    </th>
+                    <th class="py-3 px-6" scope="col">
+                        NilaiPraktek
+                    </th>
+                    <th class="py-3 px-6" scope="col">
+                        NilaiPTS
+                    </th>
+                    <th class="py-3 px-6" scope="col">
+                        NilaiPAS
                     </th>
                     <th class="py-3 px-6" scope="col">
                         Action
@@ -63,33 +78,48 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($jurusan as $g)
+                @foreach ($nilai as $g)
                     <tr
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                             scope="row">
-                            {{ $g->JurusanId }}
+                            {{ $g->NilaiId }}
                         </th>
                         <td class="py-4 px-6">
-                            {{ $g->Kode }}
+                            {{ $g->SiswaNama }}
                         </td>
                         <td class="py-4 px-6">
-                            {{ $g->JurusanNama }}
+                            {{ $g->MapelNama }}
+                        </td>
+                        <td class="py-4 px-6">
+                            {{ $g->GuruNama }}
+                        </td>
+                        <td class="py-4 px-6">
+                            {{ $g->NilaiUh }}
+                        </td>
+                        <td class="py-4 px-6">
+                            {{ $g->NilaiPraktek }}
+                        </td>
+                        <td class="py-4 px-6">
+                            {{ $g->NilaiPTS }}
+                        </td>
+                        <td class="py-4 px-6">
+                            {{ $g->NilaiPAS }}
                         </td>
                         <td class="py-4 px-6">
                             <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                                data-modal-toggle="Edit{{ $g->JurusanId }}" href="#" type="button">Edit</a>
+                                data-modal-toggle="Edit{{ $g->NilaiId }}" href="#" type="button">Edit</a>
                             <a class="font-medium text-red-600 dark:text-red-500 hover:underline"
-                                href="/jurusan/{{ $g->JurusanId }}/hapus"
+                                href="/nilai/{{ $g->NilaiId }}/hapus"
                                 onclick="return confirm('Hapus Data ?')">Remove</a>
-                            @include('jurusan.edit')
+                            @include('nilai.edit')
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
 
-        @include('jurusan.create')
+        @include('nilai.create')
 </body>
 
 </html>

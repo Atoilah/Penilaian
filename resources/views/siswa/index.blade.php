@@ -5,14 +5,13 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
-    <title>Data Guru</title>
+    <title>Siswa</title>
     {{-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script> --}}
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 </head>
 
 <body>
-
 
 
     @include('navbar')
@@ -22,10 +21,11 @@
     <div class="overflow-x-auto relative shadow-md sm:rounded-lg pt-10">
         <div class="flex justify-between items-center pb-4">
             <div>
-                <a class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                <button
+                    class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
                     data-modal-toggle="TambahData" href="#" type="button">
                     tambah
-                </a>
+                </button>
             </div>
             <label class="sr-only" for="cari">Search</label>
             <div class="relative">
@@ -50,19 +50,25 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th class="py-3 px-6" scope="col">
-                        NIP
+                        NIS
                     </th>
                     <th class="py-3 px-6" scope="col">
-                        Nama Guru
+                        Nama
                     </th>
                     <th class="py-3 px-6" scope="col">
-                        Mata Pelajaran
+                        Jurusan
+                    </th>
+                    <th class="py-3 px-6" scope="col">
+                        Kelas
                     </th>
                     <th class="py-3 px-6" scope="col">
                         Jenis Kelamin
                     </th>
                     <th class="py-3 px-6" scope="col">
-                        Status
+                        Tanggal Lahir
+                    </th>
+                    <th class="py-3 px-6" scope="col">
+                        Alamat
                     </th>
                     <th class="py-3 px-6" scope="col">
                         Action
@@ -70,18 +76,41 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($guru as $g)
+                @foreach ($siswa as $g)
                     <tr
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                             scope="row">
-                            {{ $g->NIP }}
+                            {{ $g->NIS }}
                         </th>
                         <td class="py-4 px-6">
-                            {{ $g->GuruNama }}
+                            {{ $g->SiswaNama }}
                         </td>
                         <td class="py-4 px-6">
-                            {{ $g->MapelNama }}
+                            {{ $g->JurusanNama }}
+                        </td>
+                        <td class="py-4 px-6">
+                            @if ($g->Kelas == 1)
+                                <span
+                                    class="bg-gray-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300">
+                                    <p class="px-1">X</p>
+                                </span>
+                            @elseif ($g->Kelas == 2)
+                                <span
+                                    class="bg-gray-100 text-sky-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300">
+                                    <p class="px-1">XI</p>
+                                </span>
+                            @elseif ($g->Kelas == 3)
+                                <span
+                                    class="bg-gray-100 text-rose-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300">
+                                    <p class="px-1">XII</p>
+                                </span>
+                            @else
+                                <span
+                                    class="bg-gray-100 text-yellow-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300">
+                                    <p class="px-1">XII</p>
+                                </span>
+                            @endif
                         </td>
                         <td class="py-4 px-6">
                             @if ($g->JenKel == 'L')
@@ -109,37 +138,25 @@
                             @endif
                         </td>
                         <td class="py-4 px-6">
-                            @if ($g->Status == 1)
-                                <span
-                                    class="bg-gray-100 text-sky-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300">
-                                    <p class="px-1">PNS</p>
-                                </span>
-                            @elseif ($g->Status == 2)
-                                <span
-                                    class="bg-gray-100 text-rose-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300">
-                                    <p class="px-1">Kontrak</p>
-                                </span>
-                            @else
-                                <span
-                                    class="bg-gray-100 text-rose-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300">
-                                    <p class="px-1">Honorer</p>
-                                </span>
-                            @endif
+                            {{ date(' d F Y', strtotime($g->TglLahir)) }}
                         </td>
                         <td class="py-4 px-6">
-                            <a class="font-medium text-blue-600 dark:text-gray-500 hover:underline"
-                                data-modal-toggle="Edit{{ $g->NIP }}" type="button">Edit</a>
-                            <a class="font-medium text-red-600 dark:text-gray-500 hover:underline"
-                                href="/guru/{{ $g->NIP }}/hapus"
+                            {{ $g->Alamat }}
+                        </td>
+                        <td class="py-4 px-6">
+                            <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                                data-modal-toggle="Edit{{ $g->NIS }}" href="#" type="button">Edit</a>
+                            <a class="font-medium text-red-600 dark:text-red-500 hover:underline"
+                                href="/siswa/{{ $g->NIS }}/hapus"
                                 onclick="return confirm('Hapus Data ?')">Remove</a>
-                            @include('guru.edit')
+                            @include('siswa.edit')
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
 
-        @include('guru.create')
+        @include('siswa.create')
 </body>
 
 </html>

@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('guru', function (Blueprint $table) {
-            $table->id('NIP',12);
-            $table->string('Nama',25);
-            $table->string('MapelId',30);
-            $table->enum('JenKel',['L','P']);
-            $table->enum('Status',['1','2','3']);
+            $table->id('NIP', 12);
+            $table->string('GuruNama', 25);
+            $table->string('MapelId', 30);
+            $table->enum('JenKel', ['L', 'P']);
+            $table->enum('Status', ['1', '2', '3']);
             $table->timestamps();
         });
     }
