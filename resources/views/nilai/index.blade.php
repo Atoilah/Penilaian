@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
-    <title>Mata Pelajaran</title>
+    <title>Data Guru</title>
     {{-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script> --}}
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 </head>
 
 <body>
+
 
 
     @include('navbar')
@@ -70,7 +71,13 @@
                         NilaiPTS
                     </th>
                     <th class="py-3 px-6" scope="col">
-                        NilaiPAS
+                        Nilai PAS
+                    </th>
+                    <th class="py-3 px-6" scope="col">
+                        Total
+                    </th>
+                    <th class="py-3 px-6" scope="col">
+                        Rata- Rata
                     </th>
                     <th class="py-3 px-6" scope="col">
                         Action
@@ -106,6 +113,13 @@
                         <td class="py-4 px-6">
                             {{ $g->NilaiPAS }}
                         </td>
+                        <td class="py-4 px-6">
+                            {{ $g->NilaiPAS + $g->NilaiPTS + $g->NilaiPraktek + $g->NilaiUh }}
+                        </td>
+                        <td class="py-4 px-6">
+                            {{ ($g->NilaiPAS + $g->NilaiPTS + $g->NilaiPraktek + $g->NilaiUh) / 4 }}
+                        </td>
+
                         <td class="py-4 px-6">
                             <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                                 data-modal-toggle="Edit{{ $g->NilaiId }}" href="#" type="button">Edit</a>

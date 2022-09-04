@@ -49,7 +49,7 @@ class GuruController extends Controller
         $guru = Guru::find($NIP);
         $guru->update($request->except(['_token', 'sumbit']));
         // Guru::where('NIP', $guru->NIP)->update($Validasi);
-        // return redirect('/guru');
+        return redirect('/guru');
     }
 
     public function hapus($NIP, Request $request)
@@ -63,12 +63,6 @@ class GuruController extends Controller
     public function cari(Request $request)
     {
         $Ambil = $request->cari;
-
-        $guru = Guru::all()
-            ->where('Nama', 'like', "%" . $Ambil . "%");
-        // ->paginate();
-
-        // mengirim data guru ke view index
-        return view('guru.index')->with('guru', $guru);
+        return $guru = Guru::where('NIP', 'LIKE', '%' . $Ambil . '%')->get();
     }
 }

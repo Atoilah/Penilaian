@@ -155,7 +155,6 @@
                 @endforeach
             </tbody>
         </table>
-
         @include('siswa.create')
 </body>
 

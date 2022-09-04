@@ -3,7 +3,7 @@
     id="TambahData" tabindex="-1">
     <div class="relative w-full max-w-2xl h-full md:h-auto">
         <!-- Modal content -->
-        <form action="/nilai/store" class="relative bg-white rounded-lg shadow dark:bg-gray-700" method="POST">
+        <form action="/nilai    /store" class="relative bg-white rounded-lg shadow dark:bg-gray-700" method="POST">
             @csrf
             <!-- Modal header -->
             <div class="flex justify-between items-start p-4 rounded-t border-b dark:border-gray-600">
@@ -109,7 +109,7 @@
             <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
                 <button
                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    href="/nilai" type="submit">Save all</button>
+                    href="/guru" type="submit">Save all</button>
             </div>
         </form>
     </div>

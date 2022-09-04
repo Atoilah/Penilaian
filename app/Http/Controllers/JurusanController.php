@@ -34,16 +34,21 @@ class JurusanController extends Controller
         return redirect('/jurusan');
     }
 
-    public function update(Request $request, Jurusan $jurusan)
+    public function update($JurusanId, Request $request, Jurusan $jurusan)
     {
         $Validasi = $request->validate([
             'JurusanId' => 'required|max:2',
             'Kode' => 'required|max:5',
-            'JurusanNama' => 'required|max:35',
+            'JurusanNama' => 'required|max:30',
         ]);
-        // $guru = Guru::find($JurusanId);
-        // $guru->update($request->except(['_token', 'sumbit']));
-        Jurusan::where('JurusanId', $jurusan->JurusanId)->update($Validasi);
+        // dd($Validasi);
+
+        // Jurusan::where('JurusanId', $jurusan->JurusanId)->update($Validasi);
+
+
+        $jurusan = Jurusan::find($JurusanId);
+        $jurusan->update($request->except(['_token', 'sumbit']));
+
         return redirect('/jurusan');
     }
 }
