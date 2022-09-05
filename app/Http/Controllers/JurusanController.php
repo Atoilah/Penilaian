@@ -9,9 +9,10 @@ class JurusanController extends Controller
 {
     public function index()
     {
-
-        $jurusan = Jurusan::all();
-        return view('jurusan.index')->with('jurusan', $jurusan);
+        return view('jurusan.index', [
+            "title" => "Jurusan",
+            "jurusan" => Jurusan::oldest()->Filter(request(['cari']))->get()
+        ]);
     }
 
     public function store(Request $request)

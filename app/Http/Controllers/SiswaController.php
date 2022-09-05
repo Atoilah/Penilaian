@@ -14,7 +14,14 @@ class SiswaController extends Controller
     {
 
         $siswa = DB::table('siswa')->leftJoin('jurusan', 'siswa.JurusanId', '=', 'jurusan.JurusanId')->get();
-        return view('siswa.index', ['jurusan' => Jurusan::all()])->with('siswa', $siswa);
+        return view('siswa.index', [
+            "title" => "Jurusan",
+            "jurusan" => Jurusan::oldest()->Filter(request(['cari']))->get(),
+
+            "title" => "Siswa",
+            "siswa" => DB::table('siswa')->leftJoin('jurusan', 'siswa.JurusanId', '=', 'jurusan.JurusanId')->get()
+
+        ]);
     }
 
     public function store(Request $request)

@@ -12,7 +12,10 @@ class MapelController extends Controller
     {
 
         $mapel = Mapel::all();
-        return view('mapel.index')->with('mapel', $mapel);
+        return view('mapel.index', [
+            "title" => "Mapel",
+            "mapel" => Mapel::oldest()->Filter(request(['cari']))->get()
+        ]);
     }
 
     public function store(Request $request)

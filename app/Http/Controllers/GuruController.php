@@ -59,10 +59,59 @@ class GuruController extends Controller
         return redirect('/guru');
     }
 
-
-    public function cari(Request $request)
+    function action(Request $request)
     {
-        $Ambil = $request->cari;
-        return $guru = Guru::where('NIP', 'LIKE', '%' . $Ambil . '%')->get();
+        if ($request->ajax()) {
+            $output = '';
+            $query = $request->get('query');
+            if ($query != '') {
+                $data = DB::table('guru')->leftJoin('mapel', 'guru.MapelId', '=', 'mapel.MapelId')
+                    ->where('NIP', 'like', '%' . $query . '%')
+                    ->orWhere('GuruNama', 'like', '%' . $query . '%')
+                    ->orWhere('MapelNama', 'like', '%' . $query . '%')
+                    ->orWhere('JenKel', 'like', '%' . $query . '%')
+                    ->orWhere('Status', 'like', '%' . $query . '%')
+                    ->orderBy('NIP', 'desc')
+                    ->get();
+            } else {
+                $data =
+                    DB::table('guru')->leftJoin('mapel', 'guru.MapelId', '=', 'mapel.MapelId')
+                    ->orderBy('NIP', 'desc')
+                    ->get();
+            }
+
+            $total_row = $data->count();
+            if ($total_row > 0) {
+                foreach ($data as $row) {
+                    $output .= '
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <td class="py-4 px-6">' . $row->NIP . '</td>
+                    <td class="py-4 px-6">' . $row->GuruNama . '</td>
+                    <td class="py-4 px-6">' . $row->MapelNama . '</td>
+                    <td class="py-4 px-6">' . $row->JenKel . '</td>
+                    <td class="py-4 px-6">' . $row->Status . '</td>
+                    </tr>
+                    ';
+                }
+            } else {
+                $output = '
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <td class="py-4 px-6" align="center" colspan="5">Data tidak ditemukan</td>
+                </tr>
+                ';
+            }
+            $data = array(
+                'table_data'  => $output,
+                'total_data'  => $total_row
+            );
+            echo json_encode($data);
+        }
     }
+
+
+    // public function cari(Request $request)
+    // {
+    //     $Ambil = $request->cari;
+    //     return $guru = Guru::where('NIP', 'LIKE', '%' . $Ambil . '%')->get();
+    // }
 }

@@ -24,8 +24,7 @@ Route::get('/guru', [GuruController::class, 'index']);
 Route::post('/guru/store', [GuruController::class, 'store']);
 Route::put('/guru/{NIP}', [GuruController::class, 'update']);
 Route::get('/guru/{NIP}/hapus', [GuruController::class, 'hapus']);
-Route::get('/guru/cari', [GuruController::class, 'cari']);
-
+Route::get('/action', [GuruController::class, 'action'])->name('action');
 
 Route::get('/mapel', [MapelController::class, 'index']);
 Route::post('/mapel/store', [MapelController::class, 'store']);

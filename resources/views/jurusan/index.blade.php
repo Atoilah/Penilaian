@@ -17,7 +17,6 @@
     @include('navbar')
 
 
-
     <div class="overflow-x-auto relative shadow-md sm:rounded-lg pt-10">
         <div class="flex justify-between items-center pb-4">
             <div>
@@ -28,7 +27,7 @@
             </div>
             <label class="sr-only" for="cari">Search</label>
             <div class="relative">
-                <form action="/guru/cari" method="get">
+                <form action="/jurusan" method="get">
                     {{-- @csrf --}}
                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                         <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
@@ -38,10 +37,10 @@
                                 fill-rule="evenodd"></path>
                         </svg>
                     </div>
-                    <input
+                    <input autofocus
                         class="block p-2 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         id="cari" name="cari" placeholder="Search for items" type="text"
-                        value="{{ old('cari') }}">
+                        value="{{ request('cari') }}">
                 </form>
             </div>
         </div>
@@ -63,29 +62,36 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($jurusan as $g)
+                @if ($jurusan->count())
+                    @foreach ($jurusan as $g)
+                        <tr
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                scope="row">
+                                {{ $g->JurusanId }}
+                            </th>
+                            <td class="py-4 px-6">
+                                {{ $g->Kode }}
+                            </td>
+                            <td class="py-4 px-6">
+                                {{ $g->JurusanNama }}
+                            </td>
+                            <td class="py-4 px-6">
+                                <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                                    data-modal-toggle="Edit{{ $g->JurusanId }}" href="#" type="button">Edit</a>
+                                <a class="font-medium text-red-600 dark:text-red-500 hover:underline"
+                                    href="/jurusan/{{ $g->JurusanId }}/hapus"
+                                    onclick="return confirm('Hapus Data ?')">Remove</a>
+                                @include('jurusan.edit')
+                            </td>
+                        </tr>
+                    @endforeach
+                @else
                     <tr
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                            scope="row">
-                            {{ $g->JurusanId }}
-                        </th>
-                        <td class="py-4 px-6">
-                            {{ $g->Kode }}
-                        </td>
-                        <td class="py-4 px-6">
-                            {{ $g->JurusanNama }}
-                        </td>
-                        <td class="py-4 px-6">
-                            <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                                data-modal-toggle="Edit{{ $g->JurusanId }}" href="#" type="button">Edit</a>
-                            <a class="font-medium text-red-600 dark:text-red-500 hover:underline"
-                                href="/jurusan/{{ $g->JurusanId }}/hapus"
-                                onclick="return confirm('Hapus Data ?')">Remove</a>
-                            @include('jurusan.edit')
-                        </td>
+                        <td align="center" class="py-4 px-6" colspan="5">Data tidak ditemukan</td>
                     </tr>
-                @endforeach
+                @endif
             </tbody>
         </table>
 

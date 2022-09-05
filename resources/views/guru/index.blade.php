@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <title>Data Guru</title>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 </head>
@@ -29,21 +29,21 @@
             </div>
             <label class="sr-only" for="cari">Search</label>
             <div class="relative">
-                <form action="/guru/cari" method="get">
-                    {{-- @csrf --}}
-                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                        <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
-                            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path clip-rule="evenodd"
-                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                fill-rule="evenodd"></path>
-                        </svg>
-                    </div>
-                    <input
-                        class="block p-2 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        id="cari" name="cari" placeholder="Search for items" type="text"
-                        value="{{ old('cari') }}">
-                </form>
+                {{-- <form action="/guru/cari" method="get"> --}}
+                {{-- @csrf --}}
+                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
+                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd"
+                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                            fill-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <input
+                    class="block p-2 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    id="cari" name="cari" placeholder="Search for items" type="text"
+                    value="{{ old('cari') }}">
+                {{-- </form> --}}
             </div>
         </div>
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -140,6 +140,33 @@
         </table>
 
         @include('guru.create')
+
+        <script>
+            $(document).ready(function() {
+
+                fetch_guru();
+
+                function fetch_guru(query = '') {
+                    $.ajax({
+                        url: "{{ route('action') }}",
+                        method: 'GET',
+                        data: {
+                            query: query
+                        },
+                        dataType: 'json',
+                        success: function(data) {
+                            $('tbody').html(data.table_data);
+                            $('#total_records').text(data.total_data);
+                        }
+                    })
+                }
+
+                $(document).on('keyup', '#cari', function() {
+                    var query = $(this).val();
+                    fetch_guru(query);
+                });
+            });
+        </script>
 </body>
 
 </html>
