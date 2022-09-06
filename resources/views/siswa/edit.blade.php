@@ -34,7 +34,8 @@
                                     for="NIS">NIS</label>
                                 <input autofocus
                                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('NIS') is-invalid @enderror"
-                                    id="NIS" name="NIS" type="number" value="{{ $g->NIS, old('NIS') }}">
+                                    id="NIS" name="NIS" readonly type="number"
+                                    value="{{ $g->NIS, old('NIS') }}">
                                 @error('NIS')
                                     <div class="p-4 mb-4 text-sm text-yellow-700 bg-yellow-100 rounded-lg dark:bg-yellow-200 dark:text-yellow-800"
                                         role="alert">
@@ -44,7 +45,7 @@
                             </div>
                             <div class="col-span-6 sm:col-span-3">
                                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                    for="SiswaNama">SiswaNama</label>
+                                    for="SiswaNama">Nama Siswa</label>
                                 <input
                                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('SiswaNama') is-invalid @enderror"
                                     id="SiswaNama" name="SiswaNama" type="text"
@@ -64,10 +65,10 @@
                                     id="JurusanId" name="JurusanId">
                                     @foreach ($jurusan as $M)
                                         @if (old('JurusanId', $g->JurusanId) == $M->JurusanId)
-                                            <option selected value="{{ $g->JurusanId, old('JurusanId') }}">
-                                                {{ $g->JurusanNama }}</option>
+                                            <option selected value="{{ $g->JurusanId }}">
+                                                {{ $M->JurusanNama }}</option>
                                         @else
-                                            <option value="{{ $M->Jurusan }}">
+                                            <option value="{{ $M->JurusanId }}">
                                                 {{ $M->JurusanNama }}</option>
                                         @endif
                                     @endforeach
@@ -80,13 +81,13 @@
                                 <select
                                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('Kelas') is-invalid @enderror"
                                     id="Kelas" name="Kelas">
-                                    <option {{ $g->Kelas, old('Kelas') == '1' ? 'selected' : '' }} value="1">X
+                                    <option {{ $g->Kelas == '1' ? 'selected' : '' }} value="1">X
                                     </option>
-                                    <option {{ $g->Kelas, old('Kelas') == '2' ? 'selected' : '' }} value="2">XI
+                                    <option {{ $g->Kelas == '2' ? 'selected' : '' }} value="2">XI
                                     </option>
-                                    <option {{ $g->Kelas, old('Kelas') == '3' ? 'selected' : '' }} value="3">XII
+                                    <option {{ $g->Kelas == '3' ? 'selected' : '' }} value="3">XII
                                     </option>
-                                    <option {{ $g->Kelas, old('Kelas') == '4' ? 'selected' : '' }} value="4">XIII
+                                    <option {{ $g->Kelas == '4' ? 'selected' : '' }} value="4">XIII
                                     </option>
                                 </select>
 
@@ -99,15 +100,15 @@
                             </div>
                             <div class="col-span-6 sm:col-span-3">
                                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                    for="JenKel">JenKel</label>
+                                    for="JenKel">Jenis Kelamin</label>
                                 <select
                                     class="shadow-sm @error('JenKel') is-invalid @enderror bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     id="JenKel" name="JenKel">
-                                    <option {{ $g->JenKel, old('JenKel') == 'L' ? 'selected' : '' }} value="L">
+                                    <option {{ $g->JenKel == 'L' ? 'selected' : '' }} value="L">
                                         Laki -
                                         Laki
                                     </option>
-                                    <option {{ $g->JenKel, old('JenKel') == 'P' ? 'selected' : '' }} value="P">
+                                    <option {{ $g->JenKel == 'P' ? 'selected' : '' }} value="P">
                                         Perempuan</option>
                                 </select>
                                 @error('JenKel')
@@ -119,7 +120,7 @@
                             </div>
                             <div class="col-span-6 sm:col-span-3">
                                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                    for="TglLahir">TglLahir</label>
+                                    for="TglLahir">Tanggal Lahir</label>
                                 <input
                                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('TglLahir') is-invalid @enderror"
                                     id="TglLahir" name="TglLahir" type="date"

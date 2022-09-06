@@ -38,13 +38,19 @@
                                 fill-rule="evenodd"></path>
                         </svg>
                     </div>
-                    <input
+                    <input autofocus
                         class="block p-2 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         id="cari" name="cari" placeholder="Search for items" type="text"
                         value="{{ request('cari') }}">
                 </form>
             </div>
         </div>
+        @if (session()->has('Berhasil'))
+            <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+                role="alert">
+                <span class="font-medium">{{ session('Berhasil') }}</span>
+            </div>
+        @endif
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>

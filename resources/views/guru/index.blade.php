@@ -29,23 +29,47 @@
             </div>
             <label class="sr-only" for="cari">Search</label>
             <div class="relative">
-                {{-- <form action="/guru/cari" method="get"> --}}
-                {{-- @csrf --}}
-                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
-                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path clip-rule="evenodd"
-                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                            fill-rule="evenodd"></path>
-                    </svg>
-                </div>
-                <input
-                    class="block p-2 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    id="cari" name="cari" placeholder="Search for items" type="text"
-                    value="{{ old('cari') }}">
-                {{-- </form> --}}
+                <form action="" method="get">
+                    <div class="flex">
+
+
+                        <select
+                            class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-normal text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+                            id="mapel" name="mapel">
+                            <option value="">pilih mapel</option>
+                            @if (!empty($mapel))
+                                @foreach ($mapel as $j)
+                                    <option {{ request('mapel') == $j->MapelId ? 'selected' : '' }}
+                                        value="{{ $j->MapelId }}">{{ $j->MapelNama }}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                        <div class="relative w-full">
+                            <input autofocus
+                                class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                                id="cari" name="cari" placeholder="Cari Data" type="search"
+                                value="{{ request('cari') }}">
+                            <button
+                                class="absolute top-0 right-0 p-2.5 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+                                type="submit">
+                                <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2"></path>
+                                </svg>
+                                <span class="sr-only">Search</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
+        @if (session()->has('Berhasil'))
+            <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+                role="alert">
+                <span class="font-medium">{{ session('Berhasil') }}</span>
+            </div>
+        @endif
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -141,7 +165,7 @@
 
         @include('guru.create')
 
-        <script>
+        {{-- <script>
             $(document).ready(function() {
 
                 fetch_guru();
@@ -166,7 +190,7 @@
                     fetch_guru(query);
                 });
             });
-        </script>
+        </script> --}}
 </body>
 
 </html>

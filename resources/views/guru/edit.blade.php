@@ -43,7 +43,7 @@
                             </div>
                             <div class="col-span-6 sm:col-span-3">
                                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                    for="GuruNama">GuruNama
+                                    for="GuruNama">Nama
                                     Guru</label>
                                 <input
                                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -58,10 +58,10 @@
                                 <select
                                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     id="JenKel" name="JenKel" required="">
-                                    <option {{ $g->JenKel, old('JenKel') == 'L' ? 'selected' : '' }} value="L">Laki
+                                    <option {{ $g->JenKel == 'L' ? 'selected' : '' }} value="L">Laki
                                         - Laki
                                     </option>
-                                    <option {{ $g->JenKel, old('JenKel') == 'P' ? 'selected' : '' }} value="P">
+                                    <option {{ $g->JenKel == 'P' ? 'selected' : '' }} value="P">
                                         Perempuan</option>
                                 </select>
                             </div>
@@ -71,11 +71,11 @@
                                 <select
                                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     id="Status" name="Status" required="">
-                                    <option {{ $g->Status, old('Status') == '1' ? 'selected' : '' }} value="1">PNS
+                                    <option {{ $g->Status == '1' ? 'selected' : '' }} value="1">PNS
                                     </option>
-                                    <option {{ $g->Status, old('Status') == '2' ? 'selected' : '' }} value="2">
+                                    <option {{ $g->Status == '2' ? 'selected' : '' }} value="2">
                                         Kontrak</option>
-                                    <option {{ $g->Status, old('Status') == '3' ? 'selected' : '' }} value="3">
+                                    <option {{ $g->Status == '3' ? 'selected' : '' }} value="3">
                                         Honorer</option>
                                 </select>
                             </div>

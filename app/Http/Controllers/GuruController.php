@@ -10,11 +10,30 @@ use Illuminate\Support\Facades\DB;
 
 class GuruController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $guru = DB::table('guru');
+        $mapel = DB::table('mapel')->get();
 
-        $guru = DB::table('guru')->leftJoin('mapel', 'guru.MapelId', '=', 'mapel.MapelId')->get();
-        return view('guru.index', ['mapel' => Mapel::all()])->with('guru', $guru);
+
+
+        if ($request->cari != null) {
+            $guru = $guru->where('NIP', 'like', '%' . $request->cari . '%')
+                ->orWhere('GuruNama', 'like', '%' . $request->cari . '%')
+                ->orWhere('MapelNama', 'like', '%' . $request->cari . '%');
+        }
+        if ($request->mapel != null) {
+            $guru = $guru->where('guru.MapelId', 'like', $request->mapel);
+        }
+
+        $guru = $guru
+            ->select('guru.*', 'mapel.MapelNama')
+            ->leftJoin('mapel', 'mapel.MapelId', 'guru.MapelId')
+            ->get();
+        return view('guru.index', ['guru' => $guru, 'mapel' => $mapel]);
+
+        // $guru = DB::table('guru')->leftJoin('mapel', 'guru.MapelId', '=', 'mapel.MapelId')->get();
+        // return view('guru.index', ['mapel' => Mapel::all()])->with('guru', $guru);
     }
 
     public function store(Request $request)
@@ -49,14 +68,14 @@ class GuruController extends Controller
         $guru = Guru::find($NIP);
         $guru->update($request->except(['_token', 'sumbit']));
         // Guru::where('NIP', $guru->NIP)->update($Validasi);
-        return redirect('/guru');
+        return redirect('/guru')->with('Berhasil', 'Berhasil Mengubah Data');
     }
 
     public function hapus($NIP, Request $request)
     {
         $guru = Guru::find($NIP);
         $guru->delete();
-        return redirect('/guru');
+        return redirect('/guru')->with('Berhasil', 'Berhasil Menghapus Data');
     }
 
     function action(Request $request)

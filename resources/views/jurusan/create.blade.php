@@ -28,7 +28,7 @@
                             for="JurusanId">Id</label>
                         <input autofocus
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('JurusanId') is-invalid @enderror"
-                            id="JurusanId" name="JurusanId" type="number">
+                            id="JurusanId" name="JurusanId" readonly type="number" value="{{ $nomer }}">
                         @error('JurusanId')
                             <div class="p-4 mb-4 text-sm text-yellow-700 bg-yellow-100 rounded-lg dark:bg-yellow-200 dark:text-yellow-800"
                                 role="alert">

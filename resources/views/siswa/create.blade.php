@@ -28,7 +28,7 @@
                             for="NIS">NIS</label>
                         <input autofocus
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('NIS') is-invalid @enderror"
-                            id="NIS" name="NIS" type="number" value="{{ old('NIS') }}">
+                            id="NIS" name="NIS" readonly type="number" value="{{ $nomer }}">
                         @error('NIS')
                             <div class="p-4 mb-4 text-sm text-yellow-700 bg-yellow-100 rounded-lg dark:bg-yellow-200 dark:text-yellow-800"
                                 role="alert">
@@ -37,8 +37,8 @@
                         @enderror
                     </div>
                     <div class="col-span-6 sm:col-span-3">
-                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            for="SiswaNama">SiswaNama</label>
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="SiswaNama">Nama
+                            Siswa </label>
                         <input
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('SiswaNama') is-invalid @enderror"
                             id="SiswaNama" name="SiswaNama" type="text" value="{{ old('SiswaNama') }}">
@@ -88,8 +88,8 @@
                         @enderror
                     </div>
                     <div class="col-span-6 sm:col-span-3">
-                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            for="JenKel">JenKel</label>
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="JenKel">Jenis
+                            Kelamin</label>
                         <select
                             class="shadow-sm @error('JenKel') is-invalid @enderror bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             id="JenKel" name="JenKel">
@@ -107,7 +107,7 @@
                     </div>
                     <div class="col-span-6 sm:col-span-3">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            for="TglLahir">TglLahir</label>
+                            for="TglLahir">Tanggal Lahir</label>
                         <input
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('TglLahir') is-invalid @enderror"
                             id="TglLahir" name="TglLahir" type="date" value="{{ old('TglLahir') }}">

@@ -10,18 +10,35 @@ use Illuminate\Support\Facades\DB;
 
 class SiswaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $siswa = DB::table('siswa');
+        $cek = Siswa::count();
+        $jurusan = DB::table('jurusan')->get();
 
-        $siswa = DB::table('siswa')->leftJoin('jurusan', 'siswa.JurusanId', '=', 'jurusan.JurusanId')->get();
-        return view('siswa.index', [
-            "title" => "Jurusan",
-            "jurusan" => Jurusan::oldest()->Filter(request(['cari']))->get(),
+        if ($cek == 0) {
+            $urut = 1000;
+            $nomer = $urut;
+        } else {
+            $ambil = Siswa::all()->last();
+            $urut = (int)substr($ambil->NIS, -8) + 1;
+            $nomer = $urut;
+        }
 
-            "title" => "Siswa",
-            "siswa" => DB::table('siswa')->leftJoin('jurusan', 'siswa.JurusanId', '=', 'jurusan.JurusanId')->get()
+        if ($request->cari != null) {
+            $siswa = $siswa->where('NIS', 'like', '%' . $request->cari . '%')
+                ->orWhere('SiswaNama', 'like', '%' . $request->cari . '%');
+        }
+        if ($request->jurusan != null) {
+            $siswa = $siswa->where('jurusan.JurusanId', 'like', $request->jurusan);
+        }
 
-        ]);
+        $siswa = $siswa
+            ->select('siswa.*', 'jurusan.JurusanNama')
+            ->leftJoin('jurusan', 'jurusan.JurusanId', 'siswa.JurusanId')
+            ->get();
+        dd($siswa);
+        return view('siswa.index', ['siswa' => $siswa, 'jurusan' => $jurusan], compact('nomer'));
     }
 
     public function store(Request $request)
@@ -45,7 +62,7 @@ class SiswaController extends Controller
     {
         $siswa = siswa::find($NIS);
         $siswa->delete();
-        return redirect('/siswa');
+        return redirect('/siswa')->with('Berhasil', 'Berhasil Menghapus Data');
     }
     public function update($NIS, Request $request, Siswa $siswa)
     {
@@ -66,6 +83,6 @@ class SiswaController extends Controller
         $siswa = Siswa::find($NIS);
         $siswa->update($request->except(['_token', 'sumbit']));
 
-        return redirect('/siswa');
+        return redirect('/siswa')->with('Berhasil', 'Berhasil MengUpdate Data');
     }
 }

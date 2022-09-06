@@ -28,7 +28,7 @@
                             for="MapelId">Id</label>
                         <input autofocus
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('MapelId') is-invalid @enderror"
-                            id="MapelId" name="MapelId" type="number">
+                            id="MapelId" name="MapelId" readonly type="number" value="{{ $nomer }}">
                         @error('MapelId')
                             <div class="p-4 mb-4 text-sm text-yellow-700 bg-yellow-100 rounded-lg dark:bg-yellow-200 dark:text-yellow-800"
                                 role="alert">
@@ -39,7 +39,7 @@
                     <div class="col-span-6 sm:col-span-3">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="MapelNama">Mata
                             Pelajaran</label>
-                        <input
+                        <input autofocus
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('MapelNama') is-invalid @enderror"
                             id="Nama" name="MapelNama" type="text">
                         @error('MapelNama')

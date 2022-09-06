@@ -9,10 +9,19 @@ class JurusanController extends Controller
 {
     public function index()
     {
+        $cek = Jurusan::count();
+        if ($cek == 0) {
+            $urut = 1000;
+            $nomer = $urut;
+        } else {
+            $ambil = Jurusan::all()->last();
+            $urut = (int)substr($ambil->JurusanId, -8) + 1;
+            $nomer = $urut;
+        }
         return view('jurusan.index', [
             "title" => "Jurusan",
             "jurusan" => Jurusan::oldest()->Filter(request(['cari']))->get()
-        ]);
+        ], compact('nomer'));
     }
 
     public function store(Request $request)
@@ -25,14 +34,14 @@ class JurusanController extends Controller
 
         // dd($Validasi);
         Jurusan::create($Validasi);
-        return redirect('/jurusan');
+        return redirect('/jurusan')->with('Berhasil', 'Menambahkan Data');
     }
 
     public function hapus($JurusanId, Request $request)
     {
         $jurusan = Jurusan::find($JurusanId);
         $jurusan->delete();
-        return redirect('/jurusan');
+        return redirect('/jurusan')->with('Berhasil', 'Berhasil Menghapus Data ' . $JurusanId);
     }
 
     public function update($JurusanId, Request $request, Jurusan $jurusan)
@@ -50,6 +59,6 @@ class JurusanController extends Controller
         $jurusan = Jurusan::find($JurusanId);
         $jurusan->update($request->except(['_token', 'sumbit']));
 
-        return redirect('/jurusan');
+        return redirect('/jurusan')->with('Berhasil', 'Berhasil Mengubah Data ' . $JurusanId);
     }
 }
