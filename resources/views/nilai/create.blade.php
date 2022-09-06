@@ -25,19 +25,20 @@
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 sm:col-span-3">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            for="NilaiId">NilaiId</label>
+                            for="NilaiId">Id</label>
                         <input
                             class="@error('NilaiId') is-invalid @enderror shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             id="NilaiId" name="NilaiId" readonly type="number" value="{{ $nomer }}">
                         @error('NilaiId')
                             <div class="p-4 mb-4 text-sm text-yellow-700 bg-yellow-100 rounded-lg dark:bg-yellow-200 dark:text-yellow-800"
                                 role="alert">
-                                <span class="font-medium">Masukkan NilaiId</span>
+                                <span class="font-medium">Masukkan Id</span>
                             </div>
                         @enderror
                     </div>
                     <div class="col-span-6 sm:col-span-3">
-                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="NIS">NIS
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="NIS">Nama
+                            Siswa
                         </label>
                         <select
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -54,7 +55,8 @@
                         </select>
                     </div>
                     <div class="col-span-6 sm:col-span-3">
-                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="NIP">NIP
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="NIP">Nama
+                            Guru | Mapel
                         </label>
                         <select
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -71,8 +73,8 @@
                         </select>
                     </div>
                     <div class="col-span-6 sm:col-span-3">
-                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            for="NilaiUh">NilaiUh
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="NilaiUh">Nilai
+                            Uh
                         </label>
                         <input
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -80,7 +82,7 @@
                     </div>
                     <div class="col-span-6 sm:col-span-3">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            for="NilaiPraktek">NilaiPraktek
+                            for="NilaiPraktek">Nilai Praktek
                         </label>
                         <input
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -88,16 +90,16 @@
                             value="{{ old('NilaiPraktek') }}">
                     </div>
                     <div class="col-span-6 sm:col-span-3">
-                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            for="NilaiPTS">NilaiPTS
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="NilaiPTS">Nilai
+                            PTS
                         </label>
                         <input
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             id="NilaiPTS" name="NilaiPTS" step="any" type="number" value="{{ old('NilaiPTS') }}">
                     </div>
                     <div class="col-span-6 sm:col-span-3">
-                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            for="NilaiPAS">NilaiPAS
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="NilaiPAS">Nilai
+                            PAS
                         </label>
                         <input
                             class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
