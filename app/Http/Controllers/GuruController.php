@@ -42,10 +42,10 @@ class GuruController extends Controller
 
         $Validasi = $request->validate([
             'NIP' => 'required|max:12|min:12',
-            'GuruNama' => 'required|max:30',
-            'MapelId' => 'required|max:1',
-            'JenKel' => 'required|max:1',
-            'Status' => 'required|max:1',
+            'GuruNama' => 'required',
+            'MapelId' => 'required',
+            'JenKel' => 'required',
+            'Status' => 'required',
         ]);
 
         // dd($Validasi);
@@ -59,10 +59,10 @@ class GuruController extends Controller
     {
         $Validasi = $request->validate([
             'NIP' => 'required|max:12|min:12',
-            'GuruNama' => 'required|max:30',
-            'MapelId' => 'required|max:1',
-            'JenKel' => 'required|max:1',
-            'Status' => 'required|max:1',
+            'GuruNama' => 'required',
+            'MapelId' => 'required',
+            'JenKel' => 'required',
+            'Status' => 'required',
         ]);
 
         $guru = Guru::find($NIP);

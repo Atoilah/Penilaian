@@ -27,7 +27,7 @@ class JurusanController extends Controller
     public function store(Request $request)
     {
         $Validasi = $request->validate([
-            'JurusanId' => 'required|max:2',
+            'JurusanId' => 'required',
             'Kode' => 'required|max:5',
             'JurusanNama' => 'required|max:30',
         ]);
@@ -47,7 +47,7 @@ class JurusanController extends Controller
     public function update($JurusanId, Request $request, Jurusan $jurusan)
     {
         $Validasi = $request->validate([
-            'JurusanId' => 'required|max:2',
+            'JurusanId' => 'required',
             'Kode' => 'required|max:5',
             'JurusanNama' => 'required|max:30',
         ]);

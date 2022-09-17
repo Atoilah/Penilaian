@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
-    <title>Data Guru</title>
+    <title>Data Nilai</title>
     {{-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script> --}}
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
@@ -16,6 +16,7 @@
 
 
     @include('navbar')
+
 
 
 
@@ -91,51 +92,59 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($nilai as $g)
+                @if ($nilai->count())
+                    @foreach ($nilai as $g)
+                        <tr
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                scope="row">
+                                {{ $g->NilaiId }}
+                            </th>
+                            <td class="py-4 px-6">
+                                {{ $g->SiswaNama }}
+                            </td>
+                            <td class="py-4 px-6">
+                                {{ $g->MapelNama }}
+                            </td>
+                            <td class="py-4 px-6">
+                                {{ $g->GuruNama }}
+                            </td>
+                            <td class="py-4 px-6">
+                                {{ $g->NilaiUh }}
+                            </td>
+                            <td class="py-4 px-6">
+                                {{ $g->NilaiPraktek }}
+                            </td>
+                            <td class="py-4 px-6">
+                                {{ $g->NilaiPTS }}
+                            </td>
+                            <td class="py-4 px-6">
+                                {{ $g->NilaiPAS }}
+                            </td>
+                            <td class="py-4 px-6">
+                                {{ $g->NilaiPAS + $g->NilaiPTS + $g->NilaiPraktek + $g->NilaiUh }}
+                            </td>
+                            <td class="py-4 px-6">
+                                {{ number_format(($g->NilaiPAS + $g->NilaiPTS + $g->NilaiPraktek + $g->NilaiUh) / 4, 2) }}
+                            </td>
+
+                            <td class="py-4 px-6">
+                                <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                                    data-modal-toggle="Edit{{ $g->NilaiId }}" href="#" type="button">Edit</a>
+                                <a class="font-medium text-red-600 dark:text-red-500 hover:underline"
+                                    href="/nilai/{{ $g->NilaiId }}/hapus"
+                                    onclick="return confirm('Hapus Data ?')">Remove</a>
+                                @include('nilai.edit')
+                            </td>
+                        </tr>
+                    @endforeach
+                @else
                     <tr
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <th class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                            scope="row">
-                            {{ $g->NilaiId }}
-                        </th>
-                        <td class="py-4 px-6">
-                            {{ $g->SiswaNama }}
-                        </td>
-                        <td class="py-4 px-6">
-                            {{ $g->MapelNama }}
-                        </td>
-                        <td class="py-4 px-6">
-                            {{ $g->GuruNama }}
-                        </td>
-                        <td class="py-4 px-6">
-                            {{ $g->NilaiUh }}
-                        </td>
-                        <td class="py-4 px-6">
-                            {{ $g->NilaiPraktek }}
-                        </td>
-                        <td class="py-4 px-6">
-                            {{ $g->NilaiPTS }}
-                        </td>
-                        <td class="py-4 px-6">
-                            {{ $g->NilaiPAS }}
-                        </td>
-                        <td class="py-4 px-6">
-                            {{ $g->NilaiPAS + $g->NilaiPTS + $g->NilaiPraktek + $g->NilaiUh }}
-                        </td>
-                        <td class="py-4 px-6">
-                            {{ ($g->NilaiPAS + $g->NilaiPTS + $g->NilaiPraktek + $g->NilaiUh) / 4 }}
-                        </td>
-
-                        <td class="py-4 px-6">
-                            <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                                data-modal-toggle="Edit{{ $g->NilaiId }}" href="#" type="button">Edit</a>
-                            <a class="font-medium text-red-600 dark:text-red-500 hover:underline"
-                                href="/nilai/{{ $g->NilaiId }}/hapus"
-                                onclick="return confirm('Hapus Data ?')">Remove</a>
-                            @include('nilai.edit')
-                        </td>
+                        <td align="center" class="py-4 px-6" colspan="11">Data tidak ditemukan</td>
                     </tr>
-                @endforeach
+                @endif
+
             </tbody>
         </table>
 

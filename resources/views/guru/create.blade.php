@@ -28,7 +28,7 @@
                             for="NIP">NIP</label>
                         <input
                             class="@error('NIP') is-invalid @enderror shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            id="NIP" name="NIP" type="number">
+                            id="NIP" name="NIP" value="{{ old('NIP') }}" type="number">
                         @error('NIP')
                             <div class="p-4 mb-4 text-sm text-yellow-700 bg-yellow-100 rounded-lg dark:bg-yellow-200 dark:text-yellow-800"
                                 role="alert">
@@ -51,7 +51,7 @@
                             id="MapelId" name="MapelId">
                             @foreach ($mapel as $M)
                                 @if (old('MapelId') == $M->MapelId)
-                                    <option selected value="{{ $g->MapelId }}">
+                                    <option selected value="{{ $M->MapelId }}">
                                         {{ $M->MapelNama }}</option>
                                 @else
                                     <option value="{{ $M->MapelId }}">
@@ -80,7 +80,7 @@
                             id="Status" name="Status">
                             <option {{ old('Status') == '1' ? 'selected' : '' }} value="1">PNS</option>
                             <option {{ old('Status') == '2' ? 'selected' : '' }} value="2">Kontrak</option>
-                            <option {{ old('Status') == '3' ? 'selected' : '' }} value="3">Honorer</option>
+                            <option {{ old('Status') == '3' ? 'selected' : '' }} value="3">GTT</option>
                         </select>
                     </div>
                 </div>

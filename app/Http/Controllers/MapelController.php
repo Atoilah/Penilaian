@@ -32,8 +32,8 @@ class MapelController extends Controller
     {
         // dd($request->except(['_token', 'sumbit']));
         $Validasi = $request->validate([
-            'MapelId' => 'required|max:2',
-            'MapelNama' => 'required|max:30',
+            'MapelId' => 'required',
+            'MapelNama' => 'required|max:50',
         ]);
         Mapel::create($Validasi);
         return redirect('/mapel')->with('Berhasil', 'Menambahkan Data');
@@ -41,6 +41,10 @@ class MapelController extends Controller
 
     public function update($MapelId, Request $request)
     {
+        $Validasi = $request->validate([
+            'MapelId' => 'required',
+            'MapelNama' => 'required|max:50',
+        ]);
         $mapel = Mapel::find($MapelId);
         $mapel->update($request->except(['_token', 'sumbit']));
         return redirect('/mapel')->with('Berhasil', 'Berhasil Mengubah Data');

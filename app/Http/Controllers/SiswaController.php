@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Jurusan;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
+use App\Models\Event;
+use App\Models\Guru;
 use Illuminate\Support\Facades\DB;
 
 
@@ -27,17 +29,20 @@ class SiswaController extends Controller
 
         if ($request->cari != null) {
             $siswa = $siswa->where('NIS', 'like', '%' . $request->cari . '%')
-                ->orWhere('SiswaNama', 'like', '%' . $request->cari . '%');
+                ->orWhere('SiswaNama', 'like', '%' . $request->cari . '%')
+                ->orWhere('JenKel', 'like', '%' . $request->cari . '%');
         }
         if ($request->jurusan != null) {
             $siswa = $siswa->where('jurusan.JurusanId', 'like', $request->jurusan);
+        }
+        if ($request->jenkel != null) {
+            $siswa = $siswa->where('JenKel', 'like', $request->jenkel);
         }
 
         $siswa = $siswa
             ->select('siswa.*', 'jurusan.JurusanNama')
             ->leftJoin('jurusan', 'jurusan.JurusanId', 'siswa.JurusanId')
             ->get();
-        dd($siswa);
         return view('siswa.index', ['siswa' => $siswa, 'jurusan' => $jurusan], compact('nomer'));
     }
 
@@ -47,9 +52,9 @@ class SiswaController extends Controller
         $Validasi = $request->validate([
             'NIS' => 'required',
             'SiswaNama' => 'required|max:30',
-            'JurusanId' => 'required|max:1',
-            'Kelas' => 'required|max:1',
-            'JenKel' => 'required|max:1',
+            'JurusanId' => 'required',
+            'Kelas' => 'required',
+            'JenKel' => 'required',
             'TglLahir' => 'required',
             'Alamat' => 'required',
         ]);
@@ -69,9 +74,9 @@ class SiswaController extends Controller
         $Validasi = $request->validate([
             'NIS' => 'required',
             'SiswaNama' => 'required|max:30',
-            'JurusanId' => 'required|max:1',
-            'Kelas' => 'required|max:1',
-            'JenKel' => 'required|max:1',
+            'JurusanId' => 'required',
+            'Kelas' => 'required',
+            'JenKel' => 'required',
             'TglLahir' => 'required',
             'Alamat' => 'required',
         ]);
@@ -85,4 +90,65 @@ class SiswaController extends Controller
 
         return redirect('/siswa')->with('Berhasil', 'Berhasil MengUpdate Data');
     }
+
+    public function welcome(Request $request)
+    {
+        $siswa = DB::table('siswa');
+        $siswi = DB::table('siswa');
+        $jSiswa = Siswa::count();
+        $jGuru = Guru::count();
+        $jurusan = DB::table('jurusan')->get();
+
+        $lSiswa = $siswa
+            ->select('siswa.*')
+            ->where('JenKel', 'L')
+            ->count();
+
+        $pSiswa = $siswi
+            ->select('siswa.*')
+            ->where('JenKel', 'P')
+            ->count();
+
+        if ($request->ajax()) {
+            $data = Event::whereDate('start', '>=', $request->start)
+                ->whereDate('end',   '<=', $request->end)
+                ->get(['id', 'title', 'start', 'end']);
+            return response()->json($data);
+        }
+
+
+        return view('welcome', ['siswa' => $siswa, 'jurusan' => $jurusan], compact('jSiswa', 'pSiswa', 'lSiswa', 'jGuru'));
+    }
+
+    public function action(Request $request)
+    {
+        if ($request->ajax()) {
+            if ($request->type == 'add') {
+                $event = Event::create([
+                    'title'        =>    $request->title,
+                    'start'        =>    $request->start,
+                    'end'        =>    $request->end
+                ]);
+
+                return response()->json($event);
+            }
+
+            if ($request->type == 'update') {
+                $event = Event::find($request->id)->update([
+                    'title'        =>    $request->title,
+                    'start'        =>    $request->start,
+                    'end'        =>    $request->end
+                ]);
+
+                return response()->json($event);
+            }
+
+            if ($request->type == 'delete') {
+                $event = Event::find($request->id)->delete();
+
+                return response()->json($event);
+            }
+        }
+    }
+   
 }

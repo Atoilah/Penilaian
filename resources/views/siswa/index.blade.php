@@ -45,6 +45,14 @@
                                 @endforeach
                             @endif
                         </select>
+                        <select
+                            class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-normal text-center text-gray-900 bg-gray-100 border border-gray-300 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+                            id="jenkel" name="jenkel">
+                            <option value="">jenis Kelamin</option>
+                            <option {{ request('jenkel') == 'L' ? 'selected' : '' }} value="L">Laki - Laki
+                            </option>
+                            <option {{ request('jenkel') == 'P' ? 'selected' : '' }} value="P">Perempuan</option>
+                        </select>
                         <div class="relative w-full">
                             <input autofocus
                                 class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
@@ -172,7 +180,8 @@
                             </td>
                             <td class="py-4 px-6">
                                 <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                                    data-modal-toggle="Edit{{ $g->NIS }}" href="#" type="button">Edit</a>
+                                    data-modal-toggle="Edit{{ $g->NIS }}" href="#"
+                                    type="button">Edit</a>
                                 <a class="font-medium text-red-600 dark:text-red-500 hover:underline"
                                     href="/siswa/{{ $g->NIS }}/hapus"
                                     onclick="return confirm('Hapus Data ?')">Remove</a>

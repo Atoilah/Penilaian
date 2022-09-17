@@ -76,7 +76,7 @@
                                     <option {{ $g->Status == '2' ? 'selected' : '' }} value="2">
                                         Kontrak</option>
                                     <option {{ $g->Status == '3' ? 'selected' : '' }} value="3">
-                                        Honorer</option>
+                                        GTT</option>
                                 </select>
                             </div>
                             <div class="col-span-6 sm:col-span-3">
