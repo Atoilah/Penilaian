@@ -22,7 +22,7 @@
 
 
 
-    @include('navbar')
+    @include('layout.navbar')
     <section class="pt-10 pb-10 bg-slate-100">
         <div class="container">
             <div class="flex flex-wrap">

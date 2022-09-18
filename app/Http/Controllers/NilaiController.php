@@ -59,6 +59,8 @@ class NilaiController extends Controller
             'NilaiPraktek' => 'required',
             'NilaiPTS' => 'required',
             'NilaiPAS' => 'required',
+            'Total' => 'required',
+            'Rata' => 'required',
         ]);
         // dd($Validasi);
         nilai::create($Validasi);

@@ -21,6 +21,8 @@ return new class extends Migration
             $table->float('NilaiPraktek', 12, 2);
             $table->float('NilaiPTS', 12, 2);
             $table->float('NilaiPAS', 12, 2);
+            $table->float('Total', 12, 2);
+            $table->float('Rata', 12, 2);
             $table->timestamps();
         });
     }

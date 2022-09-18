@@ -15,7 +15,7 @@
 
 
 
-    @include('navbar')
+    @include('layout.navbar')
 
 
 
@@ -160,16 +160,16 @@
                                 @include('guru.edit')
                             </td>
                         </tr>
-                        @endforeach
-                        @else
-                        <tr
+                    @endforeach
+                @else
+                    <tr
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td align="center" class="py-4 px-6" colspan="5">Data tidak ditemukan</td>
                     </tr>
-                    @endif
-                </tbody>
-            </table>
-            @include('guru.create')
+                @endif
+            </tbody>
+        </table>
+        @include('guru.create')
 
 
         {{-- <script>

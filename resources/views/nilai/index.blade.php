@@ -6,16 +6,17 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <title>Data Nilai</title>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
+    @vite('resources/js/jquery.js')
 </head>
 
 <body>
 
 
 
-    @include('navbar')
+    @include('layout.navbar')
 
 
 

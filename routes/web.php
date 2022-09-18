@@ -6,6 +6,7 @@ use App\Http\Controllers\GuruController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\NilaiController;
+use App\Http\Controllers\LayoutController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,8 +19,7 @@ use App\Http\Controllers\NilaiController;
 */
 
 
-Route::get('/', [SiswaController::class, 'welcome']);
-Route::get('/action', [SiswaController::class, 'action']);
+Route::get('/', [LayoutController::class, 'welcome']);
 
 Route::get('/guru', [GuruController::class, 'index']);
 Route::post('/guru/store', [GuruController::class, 'store']);

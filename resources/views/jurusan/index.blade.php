@@ -14,7 +14,7 @@
 <body>
 
 
-    @include('navbar')
+    @include('layout.navbar')
 
 
     <div class="overflow-x-auto relative shadow-md sm:rounded-lg pt-10">
