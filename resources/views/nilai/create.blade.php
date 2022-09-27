@@ -130,45 +130,17 @@
                     href="/guru" type="submit">Save all</button>
             </div>
             <script type="text/javascript">
-                $("NilaiUh").keyup(function() {
-                    var uh = parseFloat($("NilaiUh").val());
-                    var praktek = parseFloat($("NilaiPraktek").val());
-                    var pts = parseFloat($("NilaiPTS").val());
-                    var pas = parseFloat($("#NilaiPAS").val());
-                    var total = uh + praktek + pts + pas;
-                    var rata = total / 4;
-                    $("#Total").val(total);
-                    $("#Rata").val(rata);
-                });
-                $("NilaiPraktek").keyup(function() {
-                    var uh = parseFloat($("NilaiUh").val());
-                    var praktek = parseFloat($("NilaiPraktek").val());
-                    var pts = parseFloat($("NilaiPTS").val());
-                    var pas = parseFloat($("#NilaiPAS").val());
-                    var total = uh + praktek + pts + pas;
-                    var rata = total / 4;
-                    $("#Total").val(total);
-                    $("#Rata").val(rata);
-                });
-                $("NilaiPTS").keyup(function() {
-                    var uh = parseFloat($("NilaiUh").val());
-                    var praktek = parseFloat($("NilaiPraktek").val());
-                    var pts = parseFloat($("NilaiPTS").val());
-                    var pas = parseFloat($("#NilaiPAS").val());
-                    var total = uh + praktek + pts + pas;
-                    var rata = total / 4;
-                    $("#Total").val(total);
-                    $("#Rata").val(rata);
-                });
-                $("NilaiPAS").keyup(function() {
-                    var uh = parseFloat($("NilaiUh").val());
-                    var praktek = parseFloat($("NilaiPraktek").val());
-                    var pts = parseFloat($("NilaiPTS").val());
-                    var pas = parseFloat($("#NilaiPAS").val());
-                    var total = uh + praktek + pts + pas;
-                    var rata = total / 4;
-                    $("#Total").val(total);
-                    $("#Rata").val(rata);
+                $(document).ready(function() {
+                    $("#NilaiUh, #NilaiPraktek, #NilaiPTS, #NilaiPAS").keyup(function() {
+                        var uh = parseFloat($("#NilaiUh").val());
+                        var praktek = parseFloat($("#NilaiPraktek").val());
+                        var pts = parseFloat($("#NilaiPTS").val());
+                        var pas = parseFloat($("#NilaiPAS").val());
+                        var total = uh + praktek + pts + pas;
+                        var rata = total / 4;
+                        $("#Total").val(total);
+                        $("#Rata").val(rata);
+                    });
                 });
             </script>
 

@@ -1,26 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout.mainlayout')
+@section('title', 'Halaman Nilai')
 
-<head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="ie=edge" http-equiv="X-UA-Compatible">
-    <title>Data Nilai</title>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-    @vite('resources/css/app.css')
-    @vite('resources/js/app.js')
-    @vite('resources/js/jquery.js')
-</head>
-
-<body>
-
-
-
-    @include('layout.navbar')
-
-
-
-
+@section('content')
     <div class="overflow-x-auto relative shadow-md sm:rounded-lg pt-10">
         <div class="flex justify-between items-center pb-4">
             <div>
@@ -150,6 +131,4 @@
         </table>
 
         @include('nilai.create')
-</body>
-
-</html>
+    @endsection

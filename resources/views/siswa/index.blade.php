@@ -1,23 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout.mainlayout')
+@section('title', 'Halaman Siswa')
 
-<head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="ie=edge" http-equiv="X-UA-Compatible">
-    <title>Siswa</title>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script> --}}
-    @vite('resources/css/app.css')
-    @vite('resources/js/app.js')
-</head>
-
-<body>
-
-
-    @include('layout.navbar')
-
-
-
+@section('content')
     <div class="overflow-x-auto relative shadow-md sm:rounded-lg pt-10">
         <div class="flex justify-between items-center pb-4">
             <div>
@@ -180,8 +164,7 @@
                             </td>
                             <td class="py-4 px-6">
                                 <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                                    data-modal-toggle="Edit{{ $g->NIS }}" href="#"
-                                    type="button">Edit</a>
+                                    data-modal-toggle="Edit{{ $g->NIS }}" href="#" type="button">Edit</a>
                                 <a class="font-medium text-red-600 dark:text-red-500 hover:underline"
                                     href="/siswa/{{ $g->NIS }}/hapus"
                                     onclick="return confirm('Hapus Data ?')">Remove</a>
@@ -198,6 +181,4 @@
             </tbody>
         </table>
         @include('siswa.create')
-</body>
-
-</html>
+    @endsection

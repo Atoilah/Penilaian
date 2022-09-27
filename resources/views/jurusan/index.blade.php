@@ -1,22 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout.mainlayout')
+@section('title', 'Halaman Jurusan')
 
-<head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="ie=edge" http-equiv="X-UA-Compatible">
-    <title>Jurusan</title>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script> --}}
-    @vite('resources/css/app.css')
-    @vite('resources/js/app.js')
-</head>
-
-<body>
-
-
-    @include('layout.navbar')
-
-
+@section('content')
     <div class="overflow-x-auto relative shadow-md sm:rounded-lg pt-10">
         <div class="flex justify-between items-center pb-4">
             <div>
@@ -102,6 +87,5 @@
         </table>
 
         @include('jurusan.create')
-</body>
 
-</html>
+    @endsection

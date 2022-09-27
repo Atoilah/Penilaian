@@ -80,9 +80,6 @@ class SiswaController extends Controller
             'TglLahir' => 'required',
             'Alamat' => 'required',
         ]);
-        // dd($Validasi);
-
-        // Siswa::where('NIS', $Siswa->NIS)->update($Validasi);
 
 
         $siswa = Siswa::find($NIS);

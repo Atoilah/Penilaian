@@ -30,7 +30,7 @@ class GuruController extends Controller
             ->select('guru.*', 'mapel.MapelNama')
             ->leftJoin('mapel', 'mapel.MapelId', 'guru.MapelId')
             ->get();
-        return view('guru.index', ['guru' => $guru, 'mapel' => $mapel]);
+        return view('guru.index', ['guru' => $guru, 'mapel' => $mapel, 'title'=>'Page Guru']);
 
         // $guru = DB::table('guru')->leftJoin('mapel', 'guru.MapelId', '=', 'mapel.MapelId')->get();
         // return view('guru.index', ['mapel' => Mapel::all()])->with('guru', $guru);
